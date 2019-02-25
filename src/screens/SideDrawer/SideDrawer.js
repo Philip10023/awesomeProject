@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, StyleSheet } from 'react-native';
+import { View, Text, Dimensions, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons'
 
 class SideDrawer extends Component {
   render() {
@@ -9,15 +10,35 @@ class SideDrawer extends Component {
         { width: Dimensions.get("window").width * 0.8 }
       ]}
       >
-        <Text>SideDrawer</Text>
+      <TouchableOpacity>
+        <View style={styles.textContainer}>
+          <Icon
+            name={Platform.OS === "android" ? "md-log-out" : "ios-log-out"} 
+            size={30}
+            color="#bbb"
+            style={{marginRight: 30}}
+          />
+          <Text style={styles.textDecorator}>Sign Out</Text>
+        </View>
+      </TouchableOpacity>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  textDecorator: {
+    color: "black"
+  },
+  textContainer: {
+    alignItems: "center",
+    flexDirection: "row",
+    borderBottomWidth: 1,
+    borderColor: "#bbb",
+    backgroundColor: "#eee",
+    padding: 10
+  },
   container: {
-    paddingTop: 28,
     backgroundColor: "white",
     flex: 1
   }
